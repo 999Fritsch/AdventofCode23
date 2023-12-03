@@ -86,10 +86,14 @@ class CalibrationValueReader:
         self.sum_of_all: int = 0
 
         for line in self.lines:
+            print(f"{line.strip()}", end=" ")
             first_digit, last_digit = self.read_calibration_value(line)
-            calibration_value: int = first_digit * 10 + last_digit
-            print(f"{line.strip()} -> {calibration_value}")
-            self.sum_of_all += calibration_value
+            if first_digit and last_digit != None:
+                calibration_value: int = first_digit * 10 + last_digit
+                print(f"-> {calibration_value}")
+                self.sum_of_all += calibration_value
+            else:
+                print("-> no numbers")
 
         return self.sum_of_all
 
